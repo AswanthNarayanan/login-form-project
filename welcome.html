@@ -1,0 +1,103 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Login Page </title>  
+<style>   
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: pink;  
+}  
+button {   
+       background-color: #4CAF50;   
+       width: 100%;  
+        color: orange;   
+        padding: 15px;   
+        margin: 10px 0px;   
+        border: none;   
+        cursor: pointer;   
+         }   
+ form {   
+        border: 3px solid #f1f1f1;   
+    }   
+ input[type=text], input[type=password] {   
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;   
+        box-sizing: border-box;   
+    }  
+ button:hover {   
+        opacity: 0.7;   
+    }   
+  .cancelbtn {   
+        width: auto;   
+        padding: 10px 18px;  
+        margin: 10px 5px;  
+    }   
+        
+     
+ .container {   
+        padding: 25px;   
+        background-color: lightblue;  
+    }   
+</style>   
+</head>    
+<body>    
+    <center> <h1>  welcome to demo Application </h1> </center>  
+    <h4>  USER POST </h4> 
+    <div>
+        <label>NAME</label>
+        <input  id="name" type="text" size="40">
+    </div>
+    <div>
+        <label>LEADER</label>
+        <input type="text"
+               id="leader" size="40">
+        <span id="error"></span>
+    </div>
+    <button type="submit" 
+            onclick="postdetails()">
+        Submit
+    </button>
+    <button type="submit" 
+            onclick="logout()">
+            logout
+    </button>
+</body>
+<script>
+ window.onload = register();
+function register(){
+  var request = new XMLHttpRequest();
+  request.open('GET', "https://reqres.in/api/users", true);
+  request.setRequestHeader("Content-type", "application/json");
+  request.setRequestHeader("Accept", "application/json");
+  request.setRequestHeader("Accept-Language", "en-US");
+  request.onload = function () {
+    var res = JSON.parse(this.response); 
+    console.log(res)
+  }
+}
+function postdetails(){
+   var name1 =  document.getElementById('name').value 
+   var leader1 =  document.getElementById('leader').value
+   var post={name:name1,job:leader1}
+  var request = new XMLHttpRequest();
+  request.open('POST', "https://reqres.in/api/users", true)
+  request.setRequestHeader("Content-type", "application/json");
+  request.setRequestHeader("Accept", "application/json");
+  request.setRequestHeader("Accept-Language", "en-US");
+  request.send(JSON.stringify(post));
+  request.onload = function () {
+    var res = JSON.parse(this.response); 
+    console.log(res)
+  }
+}
+function logout(){
+    window.location.replace('login.html'); 
+            error.textContent = "Thank you visit again!!!"
+            error.style.color = "green" 
+}
+</script>     
+</html>  
